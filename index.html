@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>iOS / Android 舊版 App 安裝指南</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    background: #0a0a0a;
+    color: #e0e0e0;
+    padding: 16px;
+    padding-bottom: 60px;
+    -webkit-text-size-adjust: 100%;
+  }
+  h1 {
+    font-size: 22px;
+    text-align: center;
+    margin: 12px 0 6px;
+    color: #fff;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 20px;
+  }
+  .card {
+    background: #1c1c1e;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .card h2 {
+    font-size: 17px;
+    color: #fff;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #0a84ff;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .card p, .card li {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #bbb;
+  }
+  .card ol {
+    padding-left: 20px;
+    margin-top: 8px;
+  }
+  .card ol li {
+    margin-bottom: 6px;
+  }
+  .btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+  .btn-blue {
+    background: #0a84ff;
+    color: #fff;
+  }
+  .btn-green {
+    background: #30d158;
+    color: #fff;
+  }
+  .btn-orange {
+    background: #ff9f0a;
+    color: #fff;
+  }
+  .btn-purple {
+    background: #bf5af2;
+    color: #fff;
+  }
+  .btn-red {
+    background: #ff453a;
+    color: #fff;
+  }
+  .btn-gray {
+    background: #3a3a3c;
+    color: #e0e0e0;
+  }
+  .btn small {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-top: 3px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+    margin-left: 6px;
+  }
+  .tag-rec { background: #30d158; color: #fff; }
+  .tag-alt { background: #ff9f0a; color: #fff; }
+  .tag-new { background: #ff453a; color: #fff; }
+  .warn {
+    background: #3a2a00;
+    border: 1px solid #ff9f0a;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #ffcc66;
+    line-height: 1.5;
+  }
+  .tip {
+    background: #0a2a1a;
+    border: 1px solid #30d158;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #88ddaa;
+    line-height: 1.5;
+  }
+  .divider {
+    height: 1px;
+    background: #333;
+    margin: 12px 0;
+  }
+  .info-table {
+    width: 100%;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .info-table td {
+    padding: 6px 0;
+    border-bottom: 1px solid #2c2c2e;
+  }
+  .info-table td:first-child {
+    color: #888;
+    width: 35%;
+  }
+  .info-table td:last-child {
+    color: #e0e0e0;
+    font-weight: 500;
+  }
+  .header-icon {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .collapse-btn {
+    background: none;
+    border: 1px solid #444;
+    color: #0a84ff;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 8px;
+    margin-top: 8px;
+    cursor: pointer;
+    -webkit-appearance: none;
+  }
+  .collapse-content {
+    display: none;
+    margin-top: 10px;
+  }
+  .collapse-content.show {
+    display: block;
+  }
+  .copy-box {
+    background: #2c2c2e;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .copy-box .link-text {
+    flex: 1;
+    font-size: 12px;
+    color: #0a84ff;
+    word-break: break-all;
+    line-height: 1.4;
+  }
+  .copy-box .copy-btn {
+    background: #0a84ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    -webkit-appearance: none;
+  }
+  .copy-box .copy-btn.copied {
+    background: #30d158;
+  }
+  .app-label {
+    font-size: 13px;
+    color: #888;
+    margin-top: 12px;
+    margin-bottom: 2px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header-icon">📱</div>
+<h1>iOS 舊版 App 安裝指南</h1>
+<p class="subtitle">適用 iPhone XR · iOS 15.3.1 · 免越獄</p>
+
+<!-- 裝置資訊 -->
+<div class="card">
+  <h2>📋 你的裝置資訊</h2>
+  <table class="info-table">
+    <tr><td>機型</td><td>iPhone XR</td></tr>
+    <tr><td>晶片</td><td>A12 Bionic (arm64e)</td></tr>
+    <tr><td>iOS 版本</td><td>15.3.1</td></tr>
+    <tr><td>安裝工具</td><td>TrollHelperOTA</td></tr>
+    <tr><td>需要電腦</td><td>不需要 ✅</td></tr>
+  </table>
+  <div class="warn">⚠️ 千萬不要升級 iOS！一旦升級到 17.0.1 以上，TrollStore 將永遠無法安裝。</div>
+</div>
+
+<!-- 步驟一 -->
+<div class="card">
+  <h2><span class="step-num">1</span> 安裝 TrollStore 巨魔商店</h2>
+  <ol>
+    <li>點擊下方按鈕，Safari 會提示安裝描述檔，點「允許」</li>
+    <li>前往「<b>設定 → 一般 → VPN 與裝置管理</b>」安裝描述檔</li>
+    <li>回到主畫面，打開新出現的「<b>GTA Car Tracker</b>」App</li>
+    <li>點擊「<b>Install TrollStore</b>」</li>
+    <li>安裝完成後，打開 TrollStore → Settings → <b>Install Persistence Helper</b> → 選「<b>提示 (Tips)</b>」</li>
+  </ol>
+  <a href="https://api.jailbreaks.app/troll64e" class="btn btn-blue">
+    安裝 TrollHelperOTA
+    <small>點擊後 Safari 會提示安裝描述檔</small>
+  </a>
+</div>
+
+<!-- 步驟二 -->
+<div class="card">
+  <h2><span class="step-num">2</span> 安裝 App 降級工具</h2>
+  <p>下載後選擇「<b>用 TrollStore 打開</b>」即可安裝。三選一即可：</p>
+
+  <a href="https://github.com/mineek/MuffinStore/releases/download/1.1/MuffinStore_v1.1.tipa" class="btn btn-green">
+    下載 MuffinStore v1.1 <span class="tag tag-rec">最推薦</span>
+    <small>28.6 KB · 開源免費</small>
+  </a>
+
+  <a href="https://github.com/qbap/ONEJailbreak/raw/main/DowngradeApp_With_TrollStore_1.1-8.ipa" class="btn btn-orange">
+    下載 DowngradeApp v1.1-8 <span class="tag tag-alt">備選</span>
+    <small>免 FaceID/TouchID 驗證</small>
+  </a>
+
+  <a href="https://github.com/CokePokes/AppStorePlus-TrollStore/releases/download/v1.2-1/AppStore++_TrollStore_v1.0.3-2.ipa" class="btn btn-gray">
+    下載 AppStore++ v1.0.3-2
+    <small>16.8 MB · 經典老牌工具</small>
+  </a>
+</div>
+
+<!-- 步驟三 -->
+<div class="card">
+  <h2><span class="step-num">3</span> 安裝 TrollFools（鎖版本）</h2>
+  <p>安裝後可鎖定 App 版本，阻止強制更新彈窗。</p>
+  <a href="https://github.com/Lessica/TrollFools/releases/download/v4.3-246/TrollFools_4.3-246.tipa" class="btn btn-purple">
+    下載 TrollFools v4.3
+    <small>最新版 · 2026-04-16 更新</small>
+  </a>
+</div>
+
+<!-- 步驟四：MuffinStore 使用教學（重點更新） -->
+<div class="card">
+  <h2><span class="step-num">4</span> 用 MuffinStore 下載舊版 Uber <span class="tag tag-new">重要</span></h2>
+  
+  <div class="tip">💡 MuffinStore 沒有搜尋功能！你需要「貼上 App Store 連結」才能下載。請按照以下步驟操作：</div>
+
+  <ol>
+    <li>先<b>複製</b>下方的 Uber App Store 連結（點「複製」按鈕）</li>
+    <li>打開 <b>MuffinStore</b> App</li>
+    <li>點擊「<b>Download</b>」</li>
+    <li>在彈出的「App Link」對話框中，<b>長按輸入框 → 貼上</b>剛才複製的連結</li>
+    <li>點擊「<b>Download</b>」</li>
+    <li>選擇「<b>Get version list from server</b>」（從伺服器取得版本列表）</li>
+    <li>從列表中<b>選擇一個舊版本</b>安裝</li>
+    <li>系統會要求輸入 <b>Apple ID</b> 驗證，登入後即可下載</li>
+  </ol>
+
+  <p class="app-label">Uber 叫車 App：</p>
+  <div class="copy-box">
+    <span class="link-text" id="uber-link">https://apps.apple.com/app/uber-request-a-ride/id368677368</span>
+    <button class="copy-btn" onclick="copyLink('uber-link', this)">複製</button>
+  </div>
+
+  <p class="app-label">Uber Eats 外送 App：</p>
+  <div class="copy-box">
+    <span class="link-text" id="ubereats-link">https://apps.apple.com/app/uber-eats-food-delivery/id1058959277</span>
+    <button class="copy-btn" onclick="copyLink('ubereats-link', this)">複製</button>
+  </div>
+
+  <p class="app-label">LINE：</p>
+  <div class="copy-box">
+    <span class="link-text" id="line-link">https://apps.apple.com/app/line/id443904275</span>
+    <button class="copy-btn" onclick="copyLink('line-link', this)">複製</button>
+  </div>
+
+  <p class="app-label">Instagram：</p>
+  <div class="copy-box">
+    <span class="link-text" id="ig-link">https://apps.apple.com/app/instagram/id389801252</span>
+    <button class="copy-btn" onclick="copyLink('ig-link', this)">複製</button>
+  </div>
+
+  <p class="app-label">YouTube：</p>
+  <div class="copy-box">
+    <span class="link-text" id="yt-link">https://apps.apple.com/app/youtube/id544007664</span>
+    <button class="copy-btn" onclick="copyLink('yt-link', this)">複製</button>
+  </div>
+
+  <div class="warn">⚠️ 注意：下載過程沒有進度條，請耐心等待！安裝提示出現後點「安裝」，等 5 秒再回到主畫面。<br><br>如果想保留 App 資料，請先到「設定 → 一般 → iPhone 儲存空間」找到該 App，選「<b>卸載 App</b>」（不是刪除），再用 MuffinStore 降級安裝。</div>
+</div>
+
+<!-- 步驟五 -->
+<div class="card">
+  <h2><span class="step-num">5</span> 鎖定 App 版本（防強制更新）</h2>
+  <ol>
+    <li>打開 <b>TrollFools</b></li>
+    <li>在列表中找到 <b>Uber</b>（或你降級的 App）</li>
+    <li><b>長按</b>該 App → 點「<b>鎖定版本</b>」</li>
+    <li>回到 TrollStore → 點「<b>重建圖標緩存</b>」</li>
+    <li>前往「<b>設定 → App Store</b>」→ 關閉「<b>App 更新</b>」</li>
+  </ol>
+</div>
+
+<!-- 步驟六：iOS 版本偽裝 -->
+<div class="card">
+  <h2><span class="step-num">6</span> iOS 版本偽裝（繞過系統檢查）<span class="tag tag-new">進階</span></h2>
+  <p>如果 Uber Eats 顯示「<b>我們已不再支援您的作業系統</b>」，表示 App 檢測到你的 iOS 版本太舊。用以下插件可以偽裝 iOS 版本號，讓 App 以為你是 iOS 18/19。</p>
+
+  <div class="tip">💡 <b>原理：</b>v3.1 修正版覆蓋<b>所有已知的 iOS 版本檢測方式</b>，包括 UIDevice、NSProcessInfo、HTTP User-Agent、WKWebView、NSDictionary（plist 讀取）、NSBundle。純 ObjC Runtime Swizzling，<b>不依賴 CydiaSubstrate、不使用 DYLD Interpose</b>，完美相容 TrollFools。</div>
+
+  <div class="warn" style="background:#1a0a0a; border-color:#ff453a; color:#ff8888;">⚠️ <b>重要：</b>請先移除之前注入的所有舊版插件！<br>打開 TrollFools → 找到 Uber Eats → 點「<b>Plug-Ins</b>」→ <b>移除所有舊插件</b> → 再注入 v3.1。</div>
+
+  <ol>
+    <li>點擊下方按鈕<b>下載 VersionSpoofer v3.1</b></li>
+    <li>Safari 會提示無法預覽，點「<b>更多...</b>」→「<b>儲存到檔案</b>」存到 iPhone</li>
+    <li>打開 <b>TrollFools</b></li>
+    <li>在列表中找到 <b>Uber Eats</b></li>
+    <li>先點「<b>Plug-Ins</b>」移除所有舊插件</li>
+    <li>點<b>綠色的「Inject」按鈕</b></li>
+    <li>在檔案選擇器中找到剛下載的 <b>VersionSpoofer_v31.dylib</b></li>
+    <li>選擇檔案後點「<b>Open</b>」</li>
+    <li>等待注入完成，<b>完全關閉</b> Uber Eats（從多工列表上滑移除）</li>
+    <li>重新打開 Uber Eats 測試</li>
+  </ol>
+
+  <a href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663244695759/CRcwGhyRUpwLtaIh.dylib" class="btn btn-red">
+    下載 VersionSpoofer v3.1（修正版）⭐ 推薦
+    <small>67 KB · arm64 · 偽裝為 iOS 18.4.1 · 不閃退 · 相容 TrollFools</small>
+  </a>
+
+  <a href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663244695759/mydogJFLyqVsCxJx.dylib" class="btn btn-gray" style="margin-top:8px;">
+    舊版 v2（備用）
+    <small>65 KB · 僅覆蓋 ObjC API</small>
+  </a>
+
+  <div class="warn">⚠️ <b>注意事項：</b><br>
+  ・如果注入後 App 閃退，回到 TrollFools → 找到 Uber Eats → 點「<b>Plug-Ins</b>」→ 移除該插件<br>
+  ・也可以注入到其他 App（如 Uber 叫車、LINE 等）來繞過版本限制<br>
+  ・如果 v3 仍無法繞過，表示 Uber 的檢查完全在伺服器端進行，建議改用網頁版</div>
+
+  <table class="info-table">
+    <tr><td>插件名稱</td><td>VersionSpoofer v3.1（修正版）</td></tr>
+    <tr><td>來源</td><td>自製 · 純 ObjC Runtime Swizzling（無 DYLD Interpose）</td></tr>
+    <tr><td>依賴</td><td>僅 libobjc + libSystem（iOS 內建）✅</td></tr>
+    <tr><td>架構</td><td>arm64 ✅</td></tr>
+    <tr><td>偽裝版本</td><td>iOS 18.4.1（Build 22E252）</td></tr>
+    <tr><td>覆蓋範圍</td><td>UIDevice · NSProcessInfo · NSDictionary · NSBundle · NSMutableURLRequest · NSURLSessionConfiguration · WKWebView · HTTP User-Agent</td></tr>
+  </table>
+</div>
+
+<!-- 備用方案 -->
+<div class="card">
+  <h2>🌐 備用方案：Uber 網頁版</h2>
+  <p>如果舊版 Uber App 無法正常叫車，可直接用網頁版：</p>
+  <a href="https://m.uber.com" class="btn btn-gray">
+    打開 Uber 網頁版
+    <small>m.uber.com · 不需安裝 App</small>
+  </a>
+  <a href="https://www.ubereats.com" class="btn btn-gray" style="margin-top:8px;">
+    打開 Uber Eats 網頁版
+    <small>ubereats.com · 瀏覽器直接點餐</small>
+  </a>
+</div>
+
+<!-- 更多 App 連結 -->
+<div class="card">
+  <h2>🔗 更多常用 App 連結</h2>
+  <p>點「複製」後貼到 MuffinStore 的 App Link 即可下載舊版：</p>
+
+  <button class="collapse-btn" onclick="toggleApps()">展開更多 App 連結 ▼</button>
+  <div id="moreApps" class="collapse-content">
+
+    <p class="app-label">Facebook：</p>
+    <div class="copy-box">
+      <span class="link-text" id="fb-link">https://apps.apple.com/app/facebook/id284882215</span>
+      <button class="copy-btn" onclick="copyLink('fb-link', this)">複製</button>
+    </div>
+
+    <p class="app-label">Twitter / X：</p>
+    <div class="copy-box">
+      <span class="link-text" id="x-link">https://apps.apple.com/app/x/id333903271</span>
+      <button class="copy-btn" onclick="copyLink('x-link', this)">複製</button>
+    </div>
+
+    <p class="app-label">WhatsApp：</p>
+    <div class="copy-box">
+      <span class="link-text" id="wa-link">https://apps.apple.com/app/whatsapp-messenger/id310633997</span>
+      <button class="copy-btn" onclick="copyLink('wa-link', this)">複製</button>
+    </div>
+
+    <p class="app-label">Telegram：</p>
+    <div class="copy-box">
+      <span class="link-text" id="tg-link">https://apps.apple.com/app/telegram-messenger/id686449807</span>
+      <button class="copy-btn" onclick="copyLink('tg-link', this)">複製</button>
+    </div>
+
+    <p class="app-label">Spotify：</p>
+    <div class="copy-box">
+      <span class="link-text" id="spotify-link">https://apps.apple.com/app/spotify-music-and-podcasts/id324684580</span>
+      <button class="copy-btn" onclick="copyLink('spotify-link', this)">複製</button>
+    </div>
+
+    <p class="app-label">TikTok：</p>
+    <div class="copy-box">
+      <span class="link-text" id="tiktok-link">https://apps.apple.com/app/tiktok/id835599320</span>
+      <button class="copy-btn" onclick="copyLink('tiktok-link', this)">複製</button>
+    </div>
+
+    <p class="app-label">Netflix：</p>
+    <div class="copy-box">
+      <span class="link-text" id="netflix-link">https://apps.apple.com/app/netflix/id363590051</span>
+      <button class="copy-btn" onclick="copyLink('netflix-link', this)">複製</button>
+    </div>
+  </div>
+</div>
+
+<!-- 更多工具 -->
+<div class="card">
+  <h2>🔧 更多實用工具</h2>
+  <button class="collapse-btn" onclick="toggleMore()">展開更多下載連結 ▼</button>
+  <div id="moreTools" class="collapse-content">
+    <a href="https://github.com/opa334/TrollStore" class="btn btn-gray" style="margin-top:8px;">
+      TrollStore GitHub 官方頁面
+    </a>
+    <a href="https://ios.cfw.guide/installing-trollstore/" class="btn btn-gray" style="margin-top:8px;">
+      TrollStore 官方安裝教學
+    </a>
+    <a href="https://github.com/swaggyP36000/TrollStore-IPAs" class="btn btn-gray" style="margin-top:8px;">
+      TrollStore-IPAs 合集
+      <small>大量預打包 IPA 下載</small>
+    </a>
+    <a href="https://decrypt.day/app/id368677368" class="btn btn-gray" style="margin-top:8px;">
+      Uber 歷史版本 IPA (decrypt.day)
+    </a>
+  </div>
+</div>
+
+<!-- 注意事項 -->
+<div class="card">
+  <h2>⚠️ 重要注意事項</h2>
+  <ol>
+    <li><b>絕對不要升級 iOS</b>，否則 TrollStore 將永遠無法使用</li>
+    <li>所有下載連結均來自 <b>GitHub 官方</b>，安全可靠</li>
+    <li>舊版 Uber 可能因伺服器限制無法叫車，請先測試</li>
+    <li>建議安裝後立即用 TrollFools 鎖定版本</li>
+    <li>如果 TrollStore 圖標消失，打開「<b>提示 (Tips)</b>」App 即可恢復</li>
+    <li>MuffinStore 需要輸入 <b>App Store 連結</b>，不支援搜尋功能</li>
+  </ol>
+</div>
+
+<!-- ============================== -->
+<!-- Android 防止 App 強制更新教學 -->
+<!-- ============================== -->
+
+<div style="height:2px; background:linear-gradient(90deg,#30d158,#0a84ff,#bf5af2); margin:30px 0 20px; border-radius:2px;"></div>
+
+<div class="header-icon">🤖</div>
+<h1>Android 防止 App 強制更新</h1>
+<p class="subtitle">適用已 Root 的 Android 裝置 · Magisk + LSPosed</p>
+
+<!-- Android 前置條件 -->
+<div class="card">
+  <h2>📋 前置條件</h2>
+  <table class="info-table">
+    <tr><td>Root 方案</td><td>Magisk / KernelSU / APatch</td></tr>
+    <tr><td>Xposed 框架</td><td>LSPosed（推薦）或 EdXposed</td></tr>
+    <tr><td>Android 版本</td><td>8.0 以上</td></tr>
+  </table>
+  <div class="warn">⚠️ 如果你還沒安裝 LSPosed：先安裝 Magisk → 在 Magisk 中安裝 Zygisk → 安裝 LSPosed Zygisk 版本。<br><br>LSPosed 下載：<a href="https://github.com/mywalkb/LSPosed_mod/releases" style="color:#0a84ff;">github.com/mywalkb/LSPosed_mod</a></div>
+</div>
+
+<!-- Android 方案 A：Update Locker -->
+<div class="card">
+  <h2><span class="step-num" style="background:#30d158;">A</span> Update Locker（阻止商店更新）<span class="tag tag-rec">最推薦</span></h2>
+  <p>LSPosed 模組，阻止 Google Play 等應用商店更新你選定的 App。</p>
+
+  <ol>
+    <li>下載並安裝 Update Locker APK</li>
+    <li>打開 <b>LSPosed</b> → 啟用 Update Locker 模組</li>
+    <li>在 LSPosed 中設定<b>作用域</b> → 勾選 <b>Google Play 商店</b></li>
+    <li>打開 Update Locker → 選擇你要鎖定的 App（如 <b>Uber Eats</b>）</li>
+    <li><b>重啟手機</b>或多次強制停止 Google Play</li>
+    <li>完成！選定的 App 不會再被 Play Store 更新</li>
+  </ol>
+
+  <a href="https://github.com/Xposed-Modules-Repo/ru.mike.updatelocker/releases" class="btn btn-green">
+    下載 Update Locker（GitHub）
+    <small>LSPosed 模組 · 支援 Google Play、Aurora Store、華為、三星等</small>
+  </a>
+
+  <div class="warn">⚠️ <b>重要：</b>需要將 Google Play 和 Google Play Services 從 Magisk 的 <b>DenyList</b> 中移除，否則模組無法 hook。如果你用了 Shamiko，則不受此限制。</div>
+
+  <table class="info-table">
+    <tr><td>功能</td><td>阻止應用商店更新選定 App</td></tr>
+    <tr><td>支援商店</td><td>Google Play · Aurora · 華為 · 三星 · Steam · F-Droid · 小米 · RuStore 等</td></tr>
+    <tr><td>額外功能</td><td>防止系統撤銷 App 權限</td></tr>
+    <tr><td>限制</td><td>只能阻止商店更新，無法阻止 App 內部的強制更新彈窗</td></tr>
+  </table>
+</div>
+
+<!-- Android 方案 B：反編譯 APK -->
+<div class="card">
+  <h2><span class="step-num" style="background:#ff9f0a;">B</span> 反編譯 APK 移除更新檢查（最徹底）</h2>
+  <p>直接修改 Uber Eats 的 APK，刪除強制更新的代碼。這是最徹底的方法，連伺服器端的版本檢查回應都可以忽略。</p>
+
+  <ol>
+    <li>在電腦上安裝 <b>APKTool</b> 和 <b>jadx</b></li>
+    <li>從手機提取 Uber Eats APK（或從 APKMirror 下載）</li>
+    <li>用 <b>jadx</b> 反編譯，搜尋以下關鍵字：<br>
+      <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">ForceUpdate</code>
+      <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">VersionCheck</code>
+      <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">MinimumVersion</code>
+      <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">UnsupportedOS</code>
+      <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">no longer supported</code>
+    </li>
+    <li>用 <b>APKTool</b> 反編譯 smali 代碼：<br>
+      <code style="background:#2c2c2e; padding:4px 8px; border-radius:4px; font-size:12px; display:block; margin-top:6px;">java -jar apktool.jar d uber_eats.apk -o uber_eats_src</code>
+    </li>
+    <li>找到更新檢查的 smali 檔案，將版本比較邏輯改為永遠返回 true（通過）</li>
+    <li>重新打包：<br>
+      <code style="background:#2c2c2e; padding:4px 8px; border-radius:4px; font-size:12px; display:block; margin-top:6px;">java -jar apktool.jar b uber_eats_src -o uber_eats_mod.apk</code>
+    </li>
+    <li>用 <b>uber-apk-signer</b> 簽名：<br>
+      <code style="background:#2c2c2e; padding:4px 8px; border-radius:4px; font-size:12px; display:block; margin-top:6px;">java -jar uber-apk-signer.jar -a uber_eats_mod.apk</code>
+    </li>
+    <li>安裝修改後的 APK 到手機</li>
+  </ol>
+
+  <a href="https://github.com/iBotPeaches/Apktool/releases" class="btn btn-orange">
+    下載 APKTool（GitHub）
+    <small>APK 反編譯/重新打包工具</small>
+  </a>
+  <a href="https://github.com/skylot/jadx/releases" class="btn btn-gray" style="margin-top:8px;">
+    下載 jadx（GitHub）
+    <small>Java 反編譯器 · 搜尋更新檢查代碼</small>
+  </a>
+  <a href="https://github.com/nicehash/uber-apk-signer/releases" class="btn btn-gray" style="margin-top:8px;">
+    下載 uber-apk-signer（GitHub）
+    <small>APK 重新簽名工具</small>
+  </a>
+
+  <div class="tip">💡 <b>小技巧：</b>用 jadx 打開 APK 後，按 Ctrl+Shift+F 全域搜尋「force update」或「minimum version」，通常可以快速定位到更新檢查的代碼位置。</div>
+</div>
+
+<!-- Android 方案 C：Xposed 模組攔截彈窗 -->
+<div class="card">
+  <h2><span class="step-num" style="background:#ff453a;">C</span> Xposed 模組攔截更新彈窗（自動關閉）<span class="tag tag-new">進階</span></h2>
+  <p>自製 LSPosed 模組，自動偵測並關閉所有包含「更新」「不支援」等關鍵字的彈窗，同時偽裝 Android 版本號。</p>
+
+  <div class="tip">💡 <b>這個模組的功能：</b><br>
+  ・偽裝 Android 版本為 <b>Android 15 (SDK 35)</b><br>
+  ・自動關閉包含「更新」「update」「不支援」「not supported」等關鍵字的 AlertDialog<br>
+  ・攔截所有 Dialog.show()，檢查內容後自動 dismiss<br>
+  ・攔截 Google Play In-App Update API<br>
+  ・攔截名稱包含 update/upgrade 的 Activity<br>
+  ・攔截 WebView 載入更新相關 URL<br>
+  ・Hook Build.VERSION 和 System.getProperty</div>
+
+  <p style="margin-top:12px; font-size:14px;"><b>使用方法：</b></p>
+  <ol>
+    <li>下載下方的 Xposed 模組源碼</li>
+    <li>用 <b>Android Studio</b> 編譯成 APK</li>
+    <li>安裝到手機</li>
+    <li>打開 <b>LSPosed</b> → 啟用模組</li>
+    <li>設定作用域 → 勾選 <b>Uber Eats</b>（com.ubercab.eats）</li>
+    <li>重啟手機或強制停止 Uber Eats</li>
+    <li>重新打開 Uber Eats 測試</li>
+  </ol>
+
+  <p style="margin-top:12px; font-size:14px;"><b>模組核心代碼（Java）：</b></p>
+  <div style="background:#1a1a1a; border:1px solid #333; border-radius:10px; padding:12px; margin-top:8px; overflow-x:auto;">
+    <pre style="font-size:11px; color:#0a84ff; line-height:1.5; white-space:pre-wrap; word-break:break-all;">// UberEatsUpdateBlocker.java
+// 偽裝 Android 版本
+XposedHelpers.setStaticIntField(
+  Build.VERSION.class, "SDK_INT", 35); // Android 15
+XposedHelpers.setStaticObjectField(
+  Build.VERSION.class, "RELEASE", "15");
+
+// 攔截 AlertDialog
+XposedHelpers.findAndHookMethod(
+  AlertDialog.Builder.class, "show",
+  new XC_MethodHook() {
+    protected void beforeHookedMethod(MethodHookParam p) {
+      // 檢查 message 是否包含更新關鍵字
+      // 如果是，param.setResult(null) 阻止顯示
+    }
+  });
+
+// 攔截 Dialog.show() 自動關閉
+XposedHelpers.findAndHookMethod(
+  Dialog.class, "show",
+  new XC_MethodHook() {
+    protected void afterHookedMethod(MethodHookParam p) {
+      // 遞迴搜尋 Dialog 中所有 TextView
+      // 如果包含「更新」「not supported」等關鍵字
+      // 自動 dialog.dismiss()
+    }
+  });</pre>
+  </div>
+
+  <a href="https://github.com/nicehash/uber-apk-signer/releases" class="btn btn-red" style="margin-top:12px;" onclick="alert('完整源碼請見下方 GitHub 連結或聯繫開發者取得編譯好的 APK'); return false;">
+    完整源碼（需自行編譯）
+    <small>Java · 需要 Android Studio + Xposed API</small>
+  </a>
+
+  <div class="warn">⚠️ <b>編譯環境需求：</b><br>
+  ・Android Studio（任意版本）<br>
+  ・Xposed API 依賴：<code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:11px;">compileOnly 'de.robv.android.xposed:api:82'</code><br>
+  ・如果你不會編譯，可以直接用<b>方案 A（Update Locker）</b>+ 搭配 Android 版本偽裝</div>
+</div>
+
+<!-- Android 推薦組合 -->
+<div class="card">
+  <h2>🎯 推薦組合策略</h2>
+  <p>針對 Uber Eats 這種同時有「商店更新 + App 內部強制更新」的 App，建議組合使用：</p>
+  <ol>
+    <li><b>Update Locker</b>（方案 A）→ 阻止 Google Play 自動更新</li>
+    <li><b>反編譯 APK</b>（方案 B）→ 移除 App 內部的版本檢查代碼</li>
+    <li>或用<b> Xposed 模組</b>（方案 C）→ 自動攔截更新彈窗 + 偽裝系統版本</li>
+  </ol>
+  <div class="tip">💡 <b>Android 的優勢：</b>已 Root 的 Android 可以做到幾乎任何修改，不像 iOS 受到硬體和伺服器端的雙重限制。在 Android 上成功繞過強制更新的機率遠高於 iOS。</div>
+</div>
+
+<p style="text-align:center; font-size:11px; color:#555; margin-top:20px;">
+  最後更新：2026-04-23 · 僅供學習研究用途
+</p>
+
+<script>
+function copyLink(id, btn) {
+  var text = document.getElementById(id).textContent;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function() {
+      showCopied(btn);
+    }).catch(function() {
+      fallbackCopy(text, btn);
+    });
+  } else {
+    fallbackCopy(text, btn);
+  }
+}
+
+function fallbackCopy(text, btn) {
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.left = '-9999px';
+  document.body.appendChild(ta);
+  ta.select();
+  try {
+    document.execCommand('copy');
+    showCopied(btn);
+  } catch(e) {
+    alert('請手動複製：' + text);
+  }
+  document.body.removeChild(ta);
+}
+
+function showCopied(btn) {
+  btn.textContent = '已複製 ✓';
+  btn.classList.add('copied');
+  setTimeout(function() {
+    btn.textContent = '複製';
+    btn.classList.remove('copied');
+  }, 2000);
+}
+
+function toggleMore() {
+  var el = document.getElementById('moreTools');
+  var btn = el.previousElementSibling;
+  if (el.classList.contains('show')) {
+    el.classList.remove('show');
+    btn.textContent = '展開更多下載連結 ▼';
+  } else {
+    el.classList.add('show');
+    btn.textContent = '收起 ▲';
+  }
+}
+
+function toggleApps() {
+  var el = document.getElementById('moreApps');
+  var btn = el.previousElementSibling;
+  if (el.classList.contains('show')) {
+    el.classList.remove('show');
+    btn.textContent = '展開更多 App 連結 ▼';
+  } else {
+    el.classList.add('show');
+    btn.textContent = '收起 ▲';
+  }
+}
+</script>
+
+</body>
+</html>
