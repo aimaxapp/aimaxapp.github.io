@@ -549,48 +549,78 @@
   </table>
 </div>
 
-<!-- Android 方案 B：反編譯 APK -->
+<!-- Android 方案 B：修改版 APK（已完成反編譯） -->
 <div class="card">
-  <h2><span class="step-num" style="background:#ff9f0a;">B</span> 反編譯 APK 移除更新檢查（最徹底）</h2>
-  <p>直接修改 Uber Eats 的 APK，刪除強制更新的代碼。這是最徹底的方法，連伺服器端的版本檢查回應都可以忽略。</p>
+  <h2><span class="step-num" style="background:#ff9f0a;">B</span> 修改版 Uber Eats APK（已移除強制更新）<span class="tag tag-rec">最推薦</span></h2>
+  <p>我們已經反編譯 Uber Eats v6.169.10002 的 APK，移除了強制更新的代碼。<b>直接下載安裝即可</b>，不需要自己反編譯。</p>
 
+  <div class="tip">💡 <b>修改內容：</b><br>
+  ・<b>bxt/c.smali</b>：移除 ForceUpgrade intent 觸發邏輯（方法 a() 直接 return-void）<br>
+  ・<b>ForceUpgradeActivity.smali</b>：加入 onCreate() 直接 finish()，強制更新畫面永遠不會顯示<br>
+  ・伺服器發送 <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">rtapi.eats.device.force_upgrade</code> 訊號時，App 會直接忽略</div>
+
+  <p style="margin-top:12px; font-size:14px;"><b>安裝步驟：</b></p>
   <ol>
-    <li>在電腦上安裝 <b>APKTool</b> 和 <b>jadx</b></li>
-    <li>從手機提取 Uber Eats APK（或從 APKMirror 下載）</li>
-    <li>用 <b>jadx</b> 反編譯，搜尋以下關鍵字：<br>
-      <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">ForceUpdate</code>
-      <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">VersionCheck</code>
-      <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">MinimumVersion</code>
-      <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">UnsupportedOS</code>
-      <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">no longer supported</code>
-    </li>
-    <li>用 <b>APKTool</b> 反編譯 smali 代碼：<br>
-      <code style="background:#2c2c2e; padding:4px 8px; border-radius:4px; font-size:12px; display:block; margin-top:6px;">java -jar apktool.jar d uber_eats.apk -o uber_eats_src</code>
-    </li>
-    <li>找到更新檢查的 smali 檔案，將版本比較邏輯改為永遠返回 true（通過）</li>
-    <li>重新打包：<br>
-      <code style="background:#2c2c2e; padding:4px 8px; border-radius:4px; font-size:12px; display:block; margin-top:6px;">java -jar apktool.jar b uber_eats_src -o uber_eats_mod.apk</code>
-    </li>
-    <li>用 <b>uber-apk-signer</b> 簽名：<br>
-      <code style="background:#2c2c2e; padding:4px 8px; border-radius:4px; font-size:12px; display:block; margin-top:6px;">java -jar uber-apk-signer.jar -a uber_eats_mod.apk</code>
-    </li>
-    <li>安裝修改後的 APK 到手機</li>
+    <li>⚠️ 先到 <b>LSPosed</b> 中<b>停用</b> UberEats Update Blocker 模組（如果有安裝的話，這個模組會導致 Uber 無法進入）</li>
+    <li><b>卸載</b>原版 Uber Eats（如果已安裝）</li>
+    <li>點擊下方按鈕<b>下載修改版 APK</b></li>
+    <li>打開下載的 APK 檔案，允許「<b>未知來源</b>」安裝</li>
+    <li>安裝完成後，用 <b>Update Locker</b>（方案 A）鎖定版本，防止 Play Store 自動更新覆蓋</li>
+    <li>打開 Uber Eats 測試，應該不會再出現強制更新畫面</li>
   </ol>
 
-  <a href="https://github.com/iBotPeaches/Apktool/releases" class="btn btn-orange">
-    下載 APKTool（GitHub）
-    <small>APK 反編譯/重新打包工具</small>
+  <a href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663244695759/GshNQawlEAUiePMi.apk" class="btn btn-orange" style="font-size:18px; padding:16px;">
+    下載修改版 Uber Eats v6.169 APK
+    <small>81 MB · 已簽名 · 直接安裝 · 強制更新已移除</small>
   </a>
-  <a href="https://github.com/skylot/jadx/releases" class="btn btn-gray" style="margin-top:8px;">
-    下載 jadx（GitHub）
-    <small>Java 反編譯器 · 搜尋更新檢查代碼</small>
-  </a>
-  <a href="https://github.com/nicehash/uber-apk-signer/releases" class="btn btn-gray" style="margin-top:8px;">
-    下載 uber-apk-signer（GitHub）
-    <small>APK 重新簽名工具</small>
+  <a href="https://aimaxapp.github.io/UberEats_Patched_v6.169.apk" class="btn" style="background:#5e5ce6; margin-top:8px;">
+    備用下載（GitHub Pages）
+    <small>同一個 APK 檔案</small>
   </a>
 
-  <div class="tip">💡 <b>小技巧：</b>用 jadx 打開 APK 後，按 Ctrl+Shift+F 全域搜尋「force update」或「minimum version」，通常可以快速定位到更新檢查的代碼位置。</div>
+  <table class="info-table">
+    <tr><td>版本</td><td>Uber Eats 6.169.10002</td></tr>
+    <tr><td>架構</td><td>arm64-v8a + armeabi-v7a</td></tr>
+    <tr><td>最低 Android</td><td>7.0 (API 24)</td></tr>
+    <tr><td>修改方式</td><td>smali 代碼修改（APKTool 反編譯）</td></tr>
+    <tr><td>簽名</td><td>debug 簽名（非官方簽名，需先卸載原版）</td></tr>
+  </table>
+
+  <div class="warn">⚠️ <b>重要注意：</b><br>
+  ・因為使用了不同的簽名，<b>必須先卸載原版</b> Uber Eats 才能安裝修改版<br>
+  ・安裝後請用 <b>Update Locker</b> 鎖定版本，否則 Play Store 會自動更新回官方版<br>
+  ・如果之前安裝了 Xposed 模組「UberEats Update Blocker」，<b>必須先停用</b>，否則 Uber 會無法進入<br>
+  ・修改版 APK 的 Google 登入可能無法使用（簽名不同），請改用<b>手機號碼</b>或<b>Email</b> 登入</div>
+</div>
+
+<!-- Android 方案 B2：自己動手反編譯 -->
+<div class="card">
+  <h2>🔧 自己動手反編譯 APK（進階）</h2>
+  <p>如果你想自己修改其他版本的 Uber Eats APK，可以參考以下步驟：</p>
+
+  <button class="collapse-btn" onclick="toggleDecompile()">展開反編譯教學 ▼</button>
+  <div id="decompileGuide" class="collapse-content">
+    <ol style="margin-top:10px;">
+      <li>在電腦上安裝 <b>APKTool</b> 和 <b>jadx</b></li>
+      <li>從手機提取 Uber Eats APK（或從 APKMirror 下載）</li>
+      <li>用 <b>jadx</b> 反編譯，搜尋 <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">ForceUpgrade</code> 和 <code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:12px;">force_upgrade</code></li>
+      <li>用 <b>APKTool</b> 反編譯 smali 代碼：<br>
+        <code style="background:#2c2c2e; padding:4px 8px; border-radius:4px; font-size:12px; display:block; margin-top:6px;">java -jar apktool.jar d uber_eats.apk -o uber_eats_src</code>
+      </li>
+      <li>修改 <b>bxt/c.smali</b> 的 a() 方法 → 改為直接 <code>return-void</code></li>
+      <li>修改 <b>ForceUpgradeActivity.smali</b> → 加入 onCreate() 直接 finish()</li>
+      <li>重新打包 + 簽名：<br>
+        <code style="background:#2c2c2e; padding:4px 8px; border-radius:4px; font-size:12px; display:block; margin-top:6px;">java -jar apktool.jar b uber_eats_src -o uber_eats_mod.apk<br>apksigner sign --ks debug.keystore uber_eats_mod.apk</code>
+      </li>
+    </ol>
+
+    <a href="https://github.com/iBotPeaches/Apktool/releases" class="btn btn-gray" style="margin-top:8px;">
+      下載 APKTool（GitHub）
+    </a>
+    <a href="https://github.com/skylot/jadx/releases" class="btn btn-gray" style="margin-top:8px;">
+      下載 jadx（GitHub）
+    </a>
+  </div>
 </div>
 
 <!-- Android 方案 C：Xposed 模組攔截彈窗 -->
@@ -669,10 +699,11 @@ XposedHelpers.findAndHookMethod(
   <h2>🎯 推薦組合策略</h2>
   <p>針對 Uber Eats 這種同時有「商店更新 + App 內部強制更新」的 App，建議組合使用：</p>
   <ol>
-    <li><b>Update Locker</b>（方案 A）→ 阻止 Google Play 自動更新</li>
-    <li><b>反編譯 APK</b>（方案 B）→ 移除 App 內部的版本檢查代碼</li>
-    <li>或用<b> Xposed 模組</b>（方案 C）→ 自動攔截更新彈窗 + 偽裝系統版本</li>
+    <li>⭐ <b>修改版 APK</b>（方案 B）→ 直接安裝已移除強制更新的 APK（<b>最推薦</b>）</li>
+    <li><b>Update Locker</b>（方案 A）→ 阻止 Google Play 自動更新覆蓋修改版</li>
+    <li>方案 B + A 組合使用 = 最完美方案</li>
   </ol>
+  <div class="warn">⚠️ <b>不要使用方案 C（Xposed 模組）！</b>它會導致 Uber Eats 無法進入。如果已經安裝，請先到 LSPosed 中停用。</div>
   <div class="tip">💡 <b>Android 的優勢：</b>已 Root 的 Android 可以做到幾乎任何修改，不像 iOS 受到硬體和伺服器端的雙重限制。在 Android 上成功繞過強制更新的機率遠高於 iOS。</div>
 </div>
 
@@ -725,6 +756,18 @@ function toggleMore() {
   if (el.classList.contains('show')) {
     el.classList.remove('show');
     btn.textContent = '展開更多下載連結 ▼';
+  } else {
+    el.classList.add('show');
+    btn.textContent = '收起 ▲';
+  }
+}
+
+function toggleDecompile() {
+  var el = document.getElementById('decompileGuide');
+  var btn = el.previousElementSibling;
+  if (el.classList.contains('show')) {
+    el.classList.remove('show');
+    btn.textContent = '展開反編譯教學 ▼';
   } else {
     el.classList.add('show');
     btn.textContent = '收起 ▲';
