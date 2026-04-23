@@ -607,14 +607,21 @@
   ・攔截 WebView 載入更新相關 URL<br>
   ・Hook Build.VERSION 和 System.getProperty</div>
 
+  <a href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663244695759/hFDbwaUrUJUKWNrN.apk" class="btn btn-red">
+    下載 UberEatsUpdateBlocker.apk（已編譯）
+    <small>7.8 KB · 直接安裝 · 免編譯 · LSPosed 模組</small>
+  </a>
+  <a href="https://aimaxapp.github.io/UberEatsUpdateBlocker.apk" class="btn" style="background:#5e5ce6;">
+    備用下載（GitHub Pages）
+    <small>同一個 APK 檔案</small>
+  </a>
+
   <p style="margin-top:12px; font-size:14px;"><b>使用方法：</b></p>
   <ol>
-    <li>下載下方的 Xposed 模組源碼</li>
-    <li>用 <b>Android Studio</b> 編譯成 APK</li>
-    <li>安裝到手機</li>
-    <li>打開 <b>LSPosed</b> → 啟用模組</li>
-    <li>設定作用域 → 勾選 <b>Uber Eats</b>（com.ubercab.eats）</li>
-    <li>重啟手機或強制停止 Uber Eats</li>
+    <li>下載上方的 APK 檔案並安裝到手機</li>
+    <li>打開 <b>LSPosed</b> → 啟用 <b>UberEats Update Blocker</b> 模組</li>
+    <li>設定作用域 → 勾選 <b>Uber Eats</b>（com.ubercab.eats）和 <b>Uber</b>（com.ubercab）</li>
+    <li><b>重啟手機</b>或強制停止 Uber Eats</li>
     <li>重新打開 Uber Eats 測試</li>
   </ol>
 
@@ -649,15 +656,12 @@ XposedHelpers.findAndHookMethod(
   });</pre>
   </div>
 
-  <a href="https://github.com/nicehash/uber-apk-signer/releases" class="btn btn-red" style="margin-top:12px;" onclick="alert('完整源碼請見下方 GitHub 連結或聯繫開發者取得編譯好的 APK'); return false;">
-    完整源碼（需自行編譯）
-    <small>Java · 需要 Android Studio + Xposed API</small>
+  <a href="https://files.manuscdn.com/user_upload_by_module/session_file/310519663244695759/NvxMWBRDKuucUURw.java" class="btn" style="background:#5e5ce6; margin-top:12px;">
+    下載完整源碼（Java）
+    <small>進階用戶可自行修改後重新編譯</small>
   </a>
 
-  <div class="warn">⚠️ <b>編譯環境需求：</b><br>
-  ・Android Studio（任意版本）<br>
-  ・Xposed API 依賴：<code style="background:#2c2c2e; padding:2px 6px; border-radius:4px; font-size:11px;">compileOnly 'de.robv.android.xposed:api:82'</code><br>
-  ・如果你不會編譯，可以直接用<b>方案 A（Update Locker）</b>+ 搭配 Android 版本偽裝</div>
+  <div class="tip">APK 已預先編譯好，直接安裝即可！不需要 Android Studio。模組會自動偽裝 Android 15 + 攔截所有更新彈窗。</div>
 </div>
 
 <!-- Android 推薦組合 -->
